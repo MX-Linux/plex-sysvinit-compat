@@ -1,0 +1,12 @@
+Source: plex-sysvinit-compat
+Section: system
+Priority: optional
+Maintainer: dolphinoracle <dolphinoracle@gmail.com>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.8
+
+Package: plex-sysvinit-compat
+Architecture: all
+Depends:
+ insserv, init-system-helpers
+Description: sysvinit script for plex media server

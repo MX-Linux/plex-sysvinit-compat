@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#DEBHELPER#
+
+# preinst script for plex-sysvinit-compat
+
+#set -e
+
+case "$1" in
+  install|upgrade) dpkg-divert --quiet                                               \
+                               --add                                                 \
+                               --package plex-sysvinit-compat        \
+                               --rename                              \
+                               --divert /etc/init.d/plexmediaserver.dpkg-distrib \
+                               /etc/init.d/plexmediaserver
+                   ;;
+
+                *) :
+                   ;;
+esac 
+
+exit 0

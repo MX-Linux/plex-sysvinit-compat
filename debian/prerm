@@ -1,0 +1,12 @@
+#!/bin/sh
+# prerm script for plex-sysvinit-compat
+#
+set -e
+# stop daemon
+if [ -x "/etc/init.d/plexmediaserver" ] && [ "$1" = remove ]; then
+	invoke-rc.d plexmediaserver stop || exit $?
+fi
+
+# End 
+
+exit 0

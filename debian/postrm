@@ -1,0 +1,55 @@
+#! /bin/sh
+# postrm script for plex-sysvinit-compat
+#
+
+
+set -e
+
+# summary of how this script can be called:
+#        * <postrm> `remove'
+#        * <postrm> `purge'
+#        * <old-postrm> `upgrade' <new-version>
+#        * <new-postrm> `failed-upgrade' <old-version>
+#        * <new-postrm> `abort-install'
+#        * <new-postrm> `abort-install' <old-version>
+#        * <new-postrm> `abort-upgrade' <old-version>
+#        * <disappearer's-postrm> `disappear' <r>overwrit>r> <new-version>
+# for details, see http://www.debian.org/doc/debian-policy/ or
+# the debian-policy package
+
+
+case "$1" in
+        purge)
+
+        ;;
+
+	remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+		# do nothing
+	;;
+	
+	*)
+		echo "postrm called with unknown argument \`$1'" >&2
+		exit 1
+	;;
+esac
+
+# remove init script
+if [ "$1" = "purge" ] ; then
+	update-rc.d plexmediaserver remove >/dev/null
+fi
+
+#remove dpkg-diver
+case "$1" in
+  purge|remove) dpkg-divert --quiet                                               \
+                            --remove                                              \
+                            --package plex-sysvinit-compat               \
+                            --rename       \
+                            --divert /etc/init.d/plexmediaserver.dpkg-distrib \
+                            /etc/init.d/plexmediaserver
+                ;;
+
+             *) ;;
+esac 
+
+
+exit 0
