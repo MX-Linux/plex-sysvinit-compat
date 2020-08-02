@@ -1,3 +1,9 @@
+plex-sysvinit-compat (20.07.01) mx; urgency=medium
+
+  * update postrm script 
+
+ -- Dolphin Oracle <dolphin@littlebyte>  Sun, 02 Aug 2020 14:50:55 -0400
+
 plex-sysvinit-compat (19.07.01) mx; urgency=medium
 
   * Initial release.

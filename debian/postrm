@@ -40,7 +40,8 @@ fi
 
 #remove dpkg-diver
 case "$1" in
-  purge|remove) dpkg-divert --quiet                                               \
+  purge|remove) rm /etc/init.d/plexmediaserver
+				dpkg-divert --quiet                                               \
                             --remove                                              \
                             --package plex-sysvinit-compat               \
                             --rename       \
